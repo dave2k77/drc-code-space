@@ -78,7 +78,7 @@ evaluator = BinaryClassificationEvaluator(rawPredictionCol="prediction", labelCo
 auc = evaluator.evaluate(lr_pred.predictions)
 print()
 print("LR Classifier Accuracy Score: {}".format(auc))
-# Prints out: LR Classifier Accuracy Score: 0.9362559574812116
+# Prints out: LR Classifier Accuracy Score: 0.99648340528807
 
 # APPLYING AND EVALUATING A CROSS VALIDATION MODEL WITH LOGISTICS REGRESSION CLASSIFIER
 # Create a parameter grid for the cross validator
@@ -94,4 +94,4 @@ cvpred = cvm.transform(test)
 cv_result = evaluator.evaluate(cvpred)
 print()
 print("Cross Validation Accuracy Score for LR Classifier: {}".format(cv_result))
-# Prints out: Cross Validation Accuracy Score for LR Classifier: 0.9151539933672815
+# Prints out: Cross Validation Accuracy Score for LR Classifier: 0.9889961234642317
