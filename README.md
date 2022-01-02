@@ -1,7 +1,7 @@
 # drc-code-space
-## Space for projects in artificial intelligence and machine learning
+## Space for projects in data science, artificial intelligence, machine learning and big data analytics.
 
-**Collection of work that I have done in artificial intelligence and machine learning applications.**
+**Collection of work that I have done in artificial intelligence, machine learning applications.**
 
 **Table of Contents:**
 
