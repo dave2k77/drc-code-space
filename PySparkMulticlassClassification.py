@@ -9,10 +9,18 @@ from pyspark.sql import SparkSession
 spark = SparkSession.builder.appName("PySpark Machine Learning: Binary Classification").getOrCreate()
 
 # UNSW-NB15 DATASET: CLEANED VERSION
-unsw_data = spark.read.csv("hdfs://localhost:9000/tmp/exported/clean_data/network_data_final", inferSchema=True).toDF("srcip", "sport", "dstip", "dsport", "proto", "state", "dur", "sbytes", "dbytes", "sttl", "dttl", "sloss", "dloss", "service", "sload", "dload", "spkts", "dpkts", "swin", "dwin", "stcpb", "dtcpb", "smeansz", "dmeansz", "trans_depth", "res_bdy_len", "sjit", "djit", "stime", "ltime", "sintpkt", "dintpkt", "tcprtt", "synack", "ackdat", "is_sm_ips_ports", "ct_state_ttl", "ct_flw_http_mthd", "is_ftp_login", "ct_ftp_cmd", "ct_srv_src", "ct_srv_dst", "ct_dst_ltm", "ct_src_ltm", "ct_src_dport_ltm", "ct_dst_sport_ltm", "ct_dst_src_ltm", "attack_cat", "label")
+unsw_data = spark.read.csv("hdfs://localhost:9000/tmp/exported/clean_data/network_data_final",
+                           inferSchema=True).toDF("srcip", "sport", "dstip", "dsport", "proto", "state", "dur", "sbytes", "dbytes",
+                                                  "sttl", "dttl", "sloss", "dloss", "service", "sload", "dload", "spkts", "dpkts",
+                                                  "swin", "dwin", "stcpb", "dtcpb", "smeansz", "dmeansz", "trans_depth", "res_bdy_len",
+                                                  "sjit", "djit", "stime", "ltime", "sintpkt", "dintpkt", "tcprtt", "synack", "ackdat",
+                                                  "is_sm_ips_ports", "ct_state_ttl", "ct_flw_http_mthd", "is_ftp_login", "ct_ftp_cmd",
+                                                  "ct_srv_src", "ct_srv_dst", "ct_dst_ltm", "ct_src_ltm", "ct_src_dport_ltm",
+                                                  "ct_dst_sport_ltm", "ct_dst_src_ltm", "attack_cat", "label")
 
 # UNSW-NB15 DATASET WITH ONLY SELECTED FEATURES
-unsw_net_data = unsw_data.select("state", "service", "sttl", "swin", "dwin", "ct_srv_src", "ct_srv_dst", "ct_dst_ltm", "ct_src_ltm", "ct_src_dport_ltm", "ct_dst_sport_ltm", "ct_dst_src_ltm", "label", "attack_cat")
+unsw_net_data = unsw_data.select("state", "service", "sttl", "swin", "dwin", "ct_srv_src", "ct_srv_dst", "ct_dst_ltm",
+                                 "ct_src_ltm", "ct_src_dport_ltm", "ct_dst_sport_ltm", "ct_dst_src_ltm", "label", "attack_cat")
 
 # FEATURE SELECTION AND VECTORISARION
 from pyspark.ml.feature import StringIndexer, StandardScaler, VectorAssembler
@@ -21,13 +29,19 @@ from pyspark.ml.feature import PCA
 categorical_cols = ["state", "service", "attack_cat"]
 indexed_cols = ["state_index", "service_index", "attack_cat_index"]
 
-indexed_unsw_net_data = StringIndexer(inputCols=categorical_cols, outputCols=indexed_cols).fit(unsw_net_data).transform(unsw_net_data)
+indexed_unsw_net_data = StringIndexer(inputCols=categorical_cols, 
+                                      outputCols=indexed_cols).fit(unsw_net_data).transform(unsw_net_data)
 
-vectorised_unsw_net_data = VectorAssembler(inputCols=["state_index", "service_index", "sttl", "swin", "dwin", "ct_srv_src", "ct_srv_dst", "ct_dst_ltm", "ct_src_ltm", "ct_src_dport_ltm", "ct_dst_sport_ltm", "ct_dst_src_ltm", "attack_cat_index"], outputCol="features").transform(indexed_unsw_net_data)
+vectorised_unsw_net_data = VectorAssembler(inputCols=["state_index", "service_index", "sttl", "swin", "dwin", "ct_srv_src",
+                                                      "ct_srv_dst", "ct_dst_ltm", "ct_src_ltm", "ct_src_dport_ltm",
+                                                      "ct_dst_sport_ltm", "ct_dst_src_ltm", "attack_cat_index"],
+                                           outputCol="features").transform(indexed_unsw_net_data)
 
 unsw_net_data_final = vectorised_unsw_net_data.select("features", "label", "attack_cat_index")
 
-unsw_net_data_scaled = StandardScaler(inputCol="features", outputCol="scaledFeatures", withStd=True, withMean=True).fit(unsw_net_data_final).transform(unsw_net_data_final)
+unsw_net_data_scaled = StandardScaler(inputCol="features", 
+                                      outputCol="scaledFeatures",
+                                      withStd=True, withMean=True).fit(unsw_net_data_final).transform(unsw_net_data_final)
 
 # PCA DIMENSIONALITY REDUCTION
 col_names = unsw_net_data_scaled.columns
