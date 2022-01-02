@@ -8,3 +8,4 @@
 1. <a href="https://github.com/dave2k77/drc-code-space/blob/main/PySparkBinaryClassification.py">Advanced Analytics with PySpark</a>
 2. <a href="https://github.com/dave2k77/drc-code-space/blob/main/PySparkDataAnalytics.py">Binary Classification with PySpark</a>
 3. <a href="https://github.com/dave2k77/drc-code-space/blob/main/PySparkMulticlassClassification.py">Multiclass Classifier with PySpark</a>
+4. 3. <a href="https://github.com/dave2k77/drc-code-space/blob/main/PySparkMulticlassClassification.py">Big Data Query with Hive</a>
