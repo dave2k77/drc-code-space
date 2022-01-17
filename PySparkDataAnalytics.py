@@ -160,7 +160,6 @@ continuous_vector_data = cont_assembler.transform(
 # DESCRIPTIVE ANALYTICS AND KERNEL DENSITY ESTIMATION
 # ===================================================================
 
-
 # Descriptive Analytics
 # =======================
 continuous_data.describe().show(5)
@@ -180,8 +179,11 @@ dtrate_data_pd = dtrate_data.toPandas()
 scaled_dtrate = dtrate_data_pd / dtrate_data_pd.abs().max()
 scaled_dtrate.plot.kde(bw_method=3)
 
-# Feature Selection
-# SCALING AND VECTORISE DATA
+
+
+# FEATURE SELECTION
+#===============================================================================
+# Scaling and vectorisaing data
 unsw_data = spark.read.parquet("hdfs://localhost:9000/tmp/exported/UNSW_DATA")
 
 unsw_net_data = unsw_data.select("state", "dtrate", "service", "sload", "dload",
@@ -198,8 +200,6 @@ indexed_unsw_net_data = StringIndexer(inputCols=categorical_cols, outputCols=ind
     unsw_net_data).transform(unsw_net_data)
 
 # UNDERSAMPLING DATA
-
-
 def under_sampling_function(df):
     """
     This function takes a dataframe as argument and returns an
@@ -245,9 +245,5 @@ features_rdd = unsw_net_data_scaled.rdd.map(lambda x: x[0:]).toDF(col_names)
 
 
 pca = PCA(k=5, inputCol="scaledFeatures", outputCol="pcaFeatures")
-pca_reduced_unsw_data = pca.fit(features_rdd).transform(
-    features_rdd).select('pcaFeatures', 'label', 'attack_cat_index')
-pca_reduced_unsw_data = pca.fit(features_rdd).transform(
-    features_rdd).select('pcaFeatures', 'label', 'attack_cat_index')
 pca_reduced_unsw_data = pca.fit(features_rdd).transform(
     features_rdd).select('pcaFeatures', 'label', 'attack_cat_index')
