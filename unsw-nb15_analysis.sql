@@ -33,7 +33,7 @@ CREATE EXTERNAL TABLE unsw_network_data(
 
 
 
-/* DIESCRIPTIVE STATISTICS ON CATEGORICAL DATA */
+/* DESCRIPTIVE STATISTICS ON CATEGORICAL DATA */
 
 -- display table schema and other information
 DESCRIBE FORMATTED unsw_network_data;
