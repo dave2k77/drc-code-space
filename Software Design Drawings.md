@@ -8,7 +8,7 @@
 
 
 
-![](/home/davianc/Pictures/project_images/CPS UseCaseDiagram.drawio.svg)
+![](https://github.com/dave2k77/drc-code-space/blob/main/CPS%20UseCaseDiagram.drawio.svg)
 
 
 
