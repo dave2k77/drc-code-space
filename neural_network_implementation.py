@@ -4,8 +4,6 @@ import pandas as pd
 rgen = np.random.default_rng()
 
 # dataset generator
-
-
 def data_generator(n_features, n_values):
     features = rgen.random((n_features, n_values))
     weights = rgen.random((1, n_values))[0]
@@ -22,26 +20,18 @@ epochs = 50
 epoch_loss = []
 
 # Compute the weighted sum
-
-
 def get_weighted_sum(features, weights, bias):
     return np.dot(features, weights) + bias
 
 # Defining the activation function
-
-
 def sigmoid(w_sum):
     return 1/(1+np.exp(-w_sum))
 
 # Defining the loss function
-
-
 def cross_entropy(target, prediction):
     return -(target * np.log10(prediction) + (1 - target) * np.log10(1 - prediction))
 
 # Updating the weights
-
-
 def update_weights(weights, l_rate, target, prediction, feature):
     new_weights = []
     for x, w in zip(feature, weights):
@@ -50,8 +40,6 @@ def update_weights(weights, l_rate, target, prediction, feature):
     return new_weights
 
 # Updating the bias
-
-
 def update_bias(bias, l_rate, target, prediction):
     return bias + l_rate * (target - prediction)
 
@@ -60,8 +48,6 @@ def update_bias(bias, l_rate, target, prediction):
 data, weights = data_generator(50, 3)
 
 # Implementing a model training function
-
-
 def train_model(data, weights, bias, l_rate, epochs):
     for e in range(epochs):
         losses = []
