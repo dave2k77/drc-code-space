@@ -11,3 +11,6 @@
 4. <a href="https://github.com/dave2k77/drc-code-space/blob/main/PySparkBinaryClassificationAll.py">Binary Classification with PySpark</a>
 5. <a href="https://github.com/dave2k77/drc-code-space/blob/main/PySparkMulticlassClassificationAll.py">Multiclass Classification with PySpark</a>
 6. <a href="https://github.com/dave2k77/drc-code-space/blob/main/unsw-nb15_analysis.sql">Big Data Query with Hive</a>
+7. <a href="https://github.com/dave2k77/drc-code-space/blob/main/neural_network_implementation.py">A Neural Network Implemented from Scratch</a>
+8. <a href="https://github.com/dave2k77/drc-code-space/blob/main/neural_network_implementation.py">An Example of a Sequential Neural Network Model</a>
+9. <a href="https://github.com/dave2k77/drc-code-space/blob/main/neural_network_implementation.py">An Introduction to Deep Learning Models</a>
