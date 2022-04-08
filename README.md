@@ -13,4 +13,4 @@
 6. <a href="https://github.com/dave2k77/drc-code-space/blob/main/unsw-nb15_analysis.sql">Big Data Query with Hive</a>
 7. <a href="https://github.com/dave2k77/drc-code-space/blob/main/neural_network_implementation.py">A Neural Network Implemented from Scratch</a>
 8. <a href="https://github.com/dave2k77/drc-code-space/blob/main/An%20Example%20of%20a%20Sequential%20Neural%20Network%20Model.ipynb">6.	Prediction of side-effects of an experimental drug using a simple sequential network model</a>
-9. <a href="https://github.com/dave2k77/drc-code-space/blob/main/Introduction%20to%20Deep%20Learning%20Models.ipynb">An Introduction to Deep Learning Models</a>
+9. <a href="https://github.com/dave2k77/drc-code-space/blob/main/Introduction%20to%20Deep%20Learning%20Models.ipynb">7.	Handwriting image classification using a simple sequential network model</a>
